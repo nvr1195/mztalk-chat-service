@@ -542,7 +542,7 @@
          */
         class FollowListRepository {
             async fetch(userId) {
-                const response = await fetch(`http://localhost:8000/story/matpalList/${userId}`, {
+                const response = await fetch(`http://43.200.113.144:8000/story/matpalList/${userId}`, {
                     method: "GET",
                     headers: {
                         "content-type": "application/json"
@@ -555,7 +555,7 @@
 
         class ChatRoomRepository {
             async fetch(userId) {
-                const response = await fetch(`http://localhost:8000/login/chat/story?userNo=${userId}`, {
+                const response = await fetch(`http://43.200.113.144:8000/login/chat/story?userNo=${userId}`, {
                     method: "GET",
                     headers: {
                         "content-type": "application/json"
@@ -571,7 +571,7 @@
          */
         class UserRepository {
             async fetch(userId) {
-                const response = await fetch(`http://localhost:8000/login/user-info/${userId}`, {
+                const response = await fetch(`http://43.200.113.144:8000/login/user-info/${userId}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -619,7 +619,7 @@
         const openChatRoom = (nickname) =>{
             const meUserNickname = new URLSearchParams(location.search).get('userNickname');
             const meUserId = new URLSearchParams(location.search).get('userId');
-            fetch('http://localhost:8000/login/chat/front-nickname', {
+            fetch('http://43.200.113.144:8000/login/chat/front-nickname', {
                 method:"POST",
                 headers:{
                     "Content-Type" : "application/json"

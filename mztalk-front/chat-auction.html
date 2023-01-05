@@ -434,7 +434,7 @@ class ChatBoxController {
  */
 class FollowListRepository {
     async fetch(userId) {
-        const response = await fetch(`http://localhost:8000/login/chat/auction?userNo=${userId}`, {
+        const response = await fetch(`http://43.200.113.144:8000/login/chat/auction?userNo=${userId}`, {
             method: "GET",
             headers: {
                 "content-type": "application/json"
@@ -450,7 +450,7 @@ class FollowListRepository {
  */
 class UserRepository {
     async fetch(userId) {
-        const response = await fetch(`http://localhost:8000/login/user-info/${userId}`, {
+        const response = await fetch(`http://43.200.113.144:8000/login/user-info/${userId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
