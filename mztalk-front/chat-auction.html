@@ -116,12 +116,12 @@ async function main() {
 
     //친구 버튼 클릭시 친구 채팅 리스트로 이동
     document.getElementById('friendChat').addEventListener('click', ()=>{
-        location.href=`http://localhost:3000/chat-friends/?userId=${meUserId}&userNickname=${meUserNickname}`;
+        location.href=`http://54.199.148.58:3000/chat-friends/?userId=${meUserId}&userNickname=${meUserNickname}`;
     });
 
     //벙 버튼 클릭시 벙 채팅 리스트로 이동
     document.getElementById('bungChat').addEventListener('click', ()=>{
-        location.href=`http://localhost:3000/chat-bung/?userId=${meUserId}&userNickname=${meUserNickname}`;
+        location.href=`http://54.199.148.58:3000/chat-bung/?userId=${meUserId}&userNickname=${meUserNickname}`;
     });
 
     // 1:1 채팅에서 상대가 '나'의 소켓으로 메시지를 발송할 수 있도록 하기 위해서
@@ -471,7 +471,7 @@ class ConversationRepository {
 
     async fetch(targetUserId) {
         const query = { targetUserId };
-        const response = await fetch(`http://localhost:3000/conversations${ this.#buildQueryString(query) }`, {
+        const response = await fetch(`http://54.199.148.58:3000/conversations${ this.#buildQueryString(query) }`, {
             method: 'GET',
             headers: { userId: this.fromUserId },
         });
@@ -482,7 +482,7 @@ class ConversationRepository {
     // 특정 상대와 나눈 메시지 읽음 처리
     async read(targetUserId) {
         const query = { targetUserId };
-        const response = await fetch(`http://localhost:3000/conversations/read${ this.#buildQueryString(query) }`, {
+        const response = await fetch(`http://54.199.148.58:3000/conversations/read${ this.#buildQueryString(query) }`, {
             method: 'PUT',
             headers: { userId: this.fromUserId },
         });
