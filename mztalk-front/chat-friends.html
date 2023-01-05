@@ -170,12 +170,12 @@
 
             //벙 버튼 클릭시 벙 채팅 리스트로 이동
             document.getElementById('bungChat').addEventListener('click', () => {
-                location.href = `http://54.199.148.58:3000/chat-bung/?userId=${meUserId}&userNickname=${meUserNickname}`;
+                location.href = `http://52.197.180.192:3000/chat-bung/?userId=${meUserId}&userNickname=${meUserNickname}`;
             });
             
             //경매 버튼 클릭시 경매 채팅 리스트로 이동
             document.getElementById('auctionChat').addEventListener('click', () => {
-                location.href = `http://54.199.148.58:3000/chat-auction/?userId=${meUserId}&userNickname=${meUserNickname}`;
+                location.href = `http://52.197.180.192:3000/chat-auction/?userId=${meUserId}&userNickname=${meUserNickname}`;
             });
 
             // 1:1 채팅에서 상대가 '나'의 소켓으로 메시지를 발송할 수 있도록 하기 위해서
@@ -184,21 +184,25 @@
 
             //#region 맞팔 유저 목록 가져오기
             const followListRepository = new FollowListRepository();
+            const followList = await followListRepository.fetch(meUserId);
+            const followUserIds = await followList.data.map(({ toUserId }) => toUserId);
+            
+
             const chatRoomRepository = new ChatRoomRepository();
             const chatRoomList = await chatRoomRepository.fetch(meUserId);
             const chatRoomUserIds = await chatRoomList.data.map(({ toUserId }) => toUserId);
-
-            const followList = await followListRepository.fetch(meUserId);
-            const followUserIds = await followList.data.map(({ toUserId }) => toUserId);
+            
     
             //#endregion
 
-            //#region 맞팔 유저 목록의 유저 정보 가져오기
+            //#region 채팅방이 개설된 유저의 유저 Id를 chatRoomUserIds배열에 담는다
             const userRepository = new UserRepository();
             const users = await Promise.all(
                 chatRoomUserIds.map((userId) => userRepository.fetch(userId)),
             );
 
+
+            //
             const users2 =  await Promise.all(
                 followUserIds.map((userId) => userRepository.fetch(userId)),
             );
@@ -232,6 +236,7 @@
             //#region 로딩 시 읽지 않은 메시지가 있는 유저 하이라이팅
             users.forEach((_, index) => {
                 const latestConversation = usersConversations[index].at(-1);
+                console.log(latestConversation);
 
                 // 마지막으로 보낸 메시지가 '나'로부터 출발했다면
                 // 마지막까지 읽었다는 의미이므로 아무 작업도 하지 않음
@@ -592,7 +597,7 @@
 
             async fetch(targetUserId) {
                 const query = { targetUserId };
-                const response = await fetch(`http://54.199.148.58/conversations${this.#buildQueryString(query)}`, {
+                const response = await fetch(`http://52.197.180.192:3000/conversations${this.#buildQueryString(query)}`, {
                     method: 'GET',
                     headers: { userId: this.fromUserId },
                 });
@@ -603,7 +608,7 @@
             // 특정 상대와 나눈 메시지 읽음 처리
             async read(targetUserId) {
                 const query = { targetUserId };
-                const response = await fetch(`http://54.199.148.58/conversations/read${this.#buildQueryString(query)}`, {
+                const response = await fetch(`http://52.197.180.192:3000/conversations/read${this.#buildQueryString(query)}`, {
                     method: 'PUT',
                     headers: { userId: this.fromUserId },
                 });
@@ -636,7 +641,7 @@
                 if(res.result == 0){
                     alert('이미 개설된 채팅방 입니다.');
                 } else {
-                    location.href=`http://54.199.148.58:3000/chat-friends/?userId=${meUserId}&userNickname=${meUserNickname}` 
+                    location.href=`http://52.197.180.192:3000/chat-friends/?userId=${meUserId}&userNickname=${meUserNickname}` 
                     
 
                 }
