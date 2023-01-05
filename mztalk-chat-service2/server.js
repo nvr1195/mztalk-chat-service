@@ -83,7 +83,7 @@ async function main() {
   const port = 3000;
 
   http.listen(port, function() {
-      console.log('listening 3000 test ver');
+      console.log('listening 3000 test gateway');
   });
 
   // 유저 ID : 소켓 ID 맵
