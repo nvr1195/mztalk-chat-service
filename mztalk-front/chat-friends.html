@@ -153,6 +153,8 @@
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
+
+        let address;
         const socket = io();
 
         window.addEventListener('load', main);
@@ -640,11 +642,6 @@
                 }
             })
         }
-
-
-        document.getElementById('exitBtn').addEventListener('click', ()=>{
-            socket.to(targetUserId).leave(targetUserId);
-        });
 
 
 
