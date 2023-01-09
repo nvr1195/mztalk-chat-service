@@ -116,12 +116,12 @@ async function main() {
 
     //친구 버튼 클릭시 친구 채팅 리스트로 이동
     document.getElementById('friendChat').addEventListener('click', ()=>{
-        location.href=`http://52.197.180.192:3000/chat-friends/?userId=${meUserId}&userNickname=${meUserNickname}`;
+        location.href=`http://18.181.246.215:3000/chat-friends/?userId=${meUserId}&userNickname=${meUserNickname}`;
     });
 
     //벙 버튼 클릭시 벙 채팅 리스트로 이동
     document.getElementById('bungChat').addEventListener('click', ()=>{
-        location.href=`http://52.197.180.192:3000/chat-bung/?userId=${meUserId}&userNickname=${meUserNickname}`;
+        location.href=`http://18.181.246.215:3000/chat-bung/?userId=${meUserId}&userNickname=${meUserNickname}`;
     });
 
     // 1:1 채팅에서 상대가 '나'의 소켓으로 메시지를 발송할 수 있도록 하기 위해서
@@ -434,7 +434,7 @@ class ChatBoxController {
  */
 class FollowListRepository {
     async fetch(userId) {
-        const response = await fetch(`http://43.200.113.144:8000/login/chat/auction?userNo=${userId}`, {
+        const response = await fetch(`http://3.38.17.206:8000/login/chat/auction?userNo=${userId}`, {
             method: "GET",
             headers: {
                 "content-type": "application/json"
@@ -450,7 +450,7 @@ class FollowListRepository {
  */
 class UserRepository {
     async fetch(userId) {
-        const response = await fetch(`http://43.200.113.144:8000/login/user-info/${userId}`, {
+        const response = await fetch(`http://3.38.17.206:8000/login/user-info/${userId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -471,7 +471,7 @@ class ConversationRepository {
 
     async fetch(targetUserId) {
         const query = { targetUserId };
-        const response = await fetch(`http://52.197.180.192:3000/conversations${ this.#buildQueryString(query) }`, {
+        const response = await fetch(`http://18.181.246.215:3000/conversations${ this.#buildQueryString(query) }`, {
             method: 'GET',
             headers: { userId: this.fromUserId },
         });
@@ -482,7 +482,7 @@ class ConversationRepository {
     // 특정 상대와 나눈 메시지 읽음 처리
     async read(targetUserId) {
         const query = { targetUserId };
-        const response = await fetch(`http://52.197.180.192:3000/conversations/read${ this.#buildQueryString(query) }`, {
+        const response = await fetch(`http://18.181.246.215:3000/conversations/read${ this.#buildQueryString(query) }`, {
             method: 'PUT',
             headers: { userId: this.fromUserId },
         });

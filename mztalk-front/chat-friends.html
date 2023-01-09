@@ -170,12 +170,12 @@
 
             //벙 버튼 클릭시 벙 채팅 리스트로 이동
             document.getElementById('bungChat').addEventListener('click', () => {
-                location.href = `http://52.197.180.192:3000/chat-bung/?userId=${meUserId}&userNickname=${meUserNickname}`;
+                location.href = `http://18.181.246.215:3000/chat-bung/?userId=${meUserId}&userNickname=${meUserNickname}`;
             });
             
             //경매 버튼 클릭시 경매 채팅 리스트로 이동
             document.getElementById('auctionChat').addEventListener('click', () => {
-                location.href = `http://52.197.180.192:3000/chat-auction/?userId=${meUserId}&userNickname=${meUserNickname}`;
+                location.href = `http://18.181.246.215:3000/chat-auction/?userId=${meUserId}&userNickname=${meUserNickname}`;
             });
 
             // 1:1 채팅에서 상대가 '나'의 소켓으로 메시지를 발송할 수 있도록 하기 위해서
@@ -547,7 +547,7 @@
          */
         class FollowListRepository {
             async fetch(userId) {
-                const response = await fetch(`http://43.200.113.144:8000/story/matpalList/${userId}`, {
+                const response = await fetch(`http://3.38.17.206:8000/story/matpalList/${userId}`, {
                     method: "GET",
                     headers: {
                         "content-type": "application/json"
@@ -560,7 +560,7 @@
 
         class ChatRoomRepository {
             async fetch(userId) {
-                const response = await fetch(`http://43.200.113.144:8000/login/chat/story?userNo=${userId}`, {
+                const response = await fetch(`http://3.38.17.206:8000/login/chat/story?userNo=${userId}`, {
                     method: "GET",
                     headers: {
                         "content-type": "application/json"
@@ -576,7 +576,7 @@
          */
         class UserRepository {
             async fetch(userId) {
-                const response = await fetch(`http://43.200.113.144:8000/login/user-info/${userId}`, {
+                const response = await fetch(`http://3.38.17.206:8000/login/user-info/${userId}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -597,7 +597,7 @@
 
             async fetch(targetUserId) {
                 const query = { targetUserId };
-                const response = await fetch(`http://52.197.180.192:3000/conversations${this.#buildQueryString(query)}`, {
+                const response = await fetch(`http://18.181.246.215:3000/conversations${this.#buildQueryString(query)}`, {
                     method: 'GET',
                     headers: { userId: this.fromUserId },
                 });
@@ -608,7 +608,7 @@
             // 특정 상대와 나눈 메시지 읽음 처리
             async read(targetUserId) {
                 const query = { targetUserId };
-                const response = await fetch(`http://52.197.180.192:3000/conversations/read${this.#buildQueryString(query)}`, {
+                const response = await fetch(`http://18.181.246.215:3000/conversations/read${this.#buildQueryString(query)}`, {
                     method: 'PUT',
                     headers: { userId: this.fromUserId },
                 });
@@ -624,7 +624,7 @@
         const openChatRoom = (nickname) =>{
             const meUserNickname = new URLSearchParams(location.search).get('userNickname');
             const meUserId = new URLSearchParams(location.search).get('userId');
-            fetch('http://43.200.113.144:8000/login/chat/front-nickname', {
+            fetch('http://3.38.17.206:8000/login/chat/front-nickname', {
                 method:"POST",
                 headers:{
                     "Content-Type" : "application/json"
@@ -641,7 +641,7 @@
                 if(res.result == 0){
                     alert('이미 개설된 채팅방 입니다.');
                 } else {
-                    location.href=`http://52.197.180.192:3000/chat-friends/?userId=${meUserId}&userNickname=${meUserNickname}` 
+                    location.href=`http://18.181.246.215:3000/chat-friends/?userId=${meUserId}&userNickname=${meUserNickname}` 
                     
 
                 }
